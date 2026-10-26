@@ -1,15 +1,34 @@
 # Curriculum Vitae
 
-LaTeX source for Yong-Hun Suh's academic CV.
+Academic CV of Yong-Hun Suh, compiled from `CV.tex` using XeLaTeX.
 
-## Build
+## Reproducible build (NixOS / Linux / CI)
 
-The main document is `CV.tex` and uses XeLaTeX.
+The local build and GitHub Actions use **the same pinned Nix flake**.
+The fonts under `Fonts/` and the custom `simpleresumecv.cls` and
+`datetime2.sty` remain in the repository.
 
 ```bash
-latexmk -xelatex -interaction=nonstopmode -halt-on-error CV.tex
+nix develop
+latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -pdfxe CV.tex
 ```
 
-GitHub Actions automatically builds `CV.pdf` on pushes to `main` and provides it as a downloadable workflow artifact.
+Or run it in one command:
 
-The blog publication workflow is intentionally separate and not configured here.
+```bash
+nix develop --command latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -pdfxe CV.tex
+```
+
+Clean generated auxiliaries (does not delete CV.pdf):
+
+```bash
+nix develop --command latexmk -c CV.tex
+```
+
+`flake.lock` pins the Nixpkgs revision so both environments use the
+same TeX Live package set, XeLaTeX engine, and latexmk. On GitHub Actions,
+the PDF is built, uploaded as a workflow artifact, committed to `main`
+when changed, and prepared for GitHub Pages.
+
+The Pages deployment requires **Settings → Pages → Build and deployment:
+GitHub Actions** in the repository settings.

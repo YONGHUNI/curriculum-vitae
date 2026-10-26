@@ -9,6 +9,8 @@ on:
       - '**.sty'
       - 'Fonts/**'
       - '.github/workflows/build-cv.yml'
+      - 'flake.nix'
+      - 'flake.lock'
   workflow_dispatch:
 
 permissions:
@@ -23,12 +25,11 @@ jobs:
       - name: Check out CV repository
         uses: actions/checkout@v4
 
-      - name: Compile CV with XeLaTeX
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: CV.tex
-          latexmk_use_xelatex: true
-          args: "-file-line-error -halt-on-error -interaction=nonstopmode"
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Compile CV in locked Nix environment
+        run: nix develop --command latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -pdfxe CV.tex
 
       - name: Verify generated PDF
         run: test -s CV.pdf
