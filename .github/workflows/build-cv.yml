@@ -1,0 +1,53 @@
+name: Build CV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.tex'
+      - '**.cls'
+      - '**.sty'
+      - 'Fonts/**'
+      - '.github/workflows/build-cv.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out CV repository
+        uses: actions/checkout@v4
+
+      # First-run migration only. Once CV.tex exists, the blog is not read.
+      - name: Import CV source from blog on first run
+        if: ${{ hashFiles('CV.tex') == '' }}
+        run: |
+          git clone --depth=1 --filter=blob:none --sparse https://github.com/YONGHUNI/blog.git /tmp/cv-source-blog
+          git -C /tmp/cv-source-blog sparse-checkout set cv
+          test -f /tmp/cv-source-blog/cv/CV.tex
+          cp -a /tmp/cv-source-blog/cv/. .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CV.tex simpleresumecv.cls datetime2.sty Fonts LICENSE
+          git commit -m "chore: import CV sources from blog"
+          git push origin HEAD:main
+
+      - name: Compile CV with XeLaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: CV.tex
+          latexmk_use_xelatex: true
+          args: "-file-line-error -halt-on-error -interaction=nonstopmode"
+
+      - name: Verify generated PDF
+        run: test -s CV.pdf
+
+      - name: Upload compiled CV
+        uses: actions/upload-artifact@v4
+        with:
+          name: CV-Yonghun-Suh
+          path: CV.pdf
+          if-no-files-found: error
