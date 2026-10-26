@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build CV (Nix)",
+      "type": "shell",
+      "command": "nix",
+      "args": [
+        "develop",
+        "--command",
+        "latexmk",
+        "-xelatex",
+        "-file-line-error",
+        "-halt-on-error",
+        "-interaction=nonstopmode",
+        "-pdfxe",
+        "CV.tex"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean CV auxiliary files (Nix)",
+      "type": "shell",
+      "command": "nix",
+      "args": [
+        "develop",
+        "--command",
+        "latexmk",
+        "-c",
+        "CV.tex"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
