@@ -13,6 +13,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -50,3 +52,24 @@ jobs:
           git commit -m "docs: update compiled CV PDF"
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Prepare CV for GitHub Pages
+        run: |
+          mkdir -p _site
+          cp CV.pdf _site/CV.pdf
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
