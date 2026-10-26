@@ -23,7 +23,7 @@
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        packages = [ tex ];
+        packages = [ tex pkgs.tex-fmt ];
       };
     };
 }
