@@ -1,0 +1,40 @@
+name: Validate CV pull request
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'CV.tex'
+      - '**.cls'
+      - '**.sty'
+      - 'Fonts/**'
+      - 'flake.nix'
+      - 'flake.lock'
+      - '.github/workflows/check-cv-pr.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout pull-request source
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Compile academic CV
+        run: nix develop --command latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode -pdfxe CV.tex
+
+      - name: Verify output exists
+        run: test -s CV.pdf
+
+      - name: Upload reviewable PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-cv-preview
+          path: CV.pdf
+          if-no-files-found: error
