@@ -23,7 +23,7 @@ This checklist distinguishes verified source edits from claims still needing evi
 - **UGA assistantship**: Treat as employment under Research Experience, not a competitive award absent supporting documentation.
 - **Research specifics**: The GraphCast workflow has concrete evidence; omit claims that future experiments, papers, or methods are complete.
 - **Current conference publication claims**: Check oral vs poster vs coauthor-only presentation status before updating descriptions.
-- **PDF**: The branch edits only the LaTeX source. CI currently builds only on pushes to main. Compile and visually inspect before merging; the PDF stored on main still reflects the previous CV.
+- **PDF**: The pull-request validation workflow has compiled the edited LaTeX successfully (GitHub Actions run 40433637664, 27 Oct 2026). The resulting four-page PDF was rendered and inspected: the MPI-SP entry begins on page 2; the ROKA entry remains together on page 3; Honors & Awards begins on page 4. The PDF committed on main has **not** been updated.
 
 ## Author feedback incorporated (26 October 2026)
 - Added official UGA Geography mailing address at 210 Field St., Room 204, Athens, GA 30602. This is the **department** address; it is not claimed to be an individual mailbox.
@@ -36,6 +36,14 @@ This checklist distinguishes verified source edits from claims still needing evi
 - Added the verified DOI 10.16879/jkca.2024.24.2.089 for the landslide article; kept visible DOI for the Social Science & Medicine article. The 2023 population paper's publisher page does **not** display a DOI; it is linked by stable publisher URL without guessing.
 - Retained Republic of Korea Army military experience in `Work Experience`, not `Service`, because the latter denotes academic/professional service in US CVs.
 - Added Nix (flakes) to Reproducibility & Publishing.
+
+## Additional review of uploaded CV.pdf (26 October 2026)
+- Original four-page PDF showed an overly stretched 2023 article citation and a print-unfriendly full publisher URL. Applied ragged-right body alignment and shortened the visible publisher link without changing the official citation.
+- Journal of the Korean Cartographic Association editorial assistantship moved from Work Experience to Academic Service. Student Council Treasurer appears first based on later end date.
+- Removed generic introductory statements that duplicated the substantive research bullets in MPI-SP, SNU research projects, and Korea Environment Institute.
+- Replaced the broad UGA RA research-scope bullet with a project-specific subseasonal atmospheric-river forecasting description based on the public research repository.
+- Used `needspace` to prevent orphaned institutional headings and split awards. Updated the Nix LaTeX environment for consistent local/CI builds.
+- Four-page PDF compiled successfully and visually inspected. Maintained the previously updated header unchanged in this review.
 
 ## Later layout iteration
 Consider a more conventional academic-CV typographic design: 10.5–11 pt readable font, consistent date alignment, moderate whitespace, section headings that do not require a 1.2-inch left gutter, no photo, linked DOI/preprints, running page numbers, and a short header. Preserve complete academic activity; do not force a one-page résumé.
