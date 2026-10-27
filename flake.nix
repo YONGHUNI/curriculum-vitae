@@ -16,6 +16,7 @@
           xltxtra
           hyphenat
           datetime2
+          needspace
           tracklang
           etoolbox
           xkeyval;
