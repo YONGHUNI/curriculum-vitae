@@ -33,7 +33,7 @@ This checklist distinguishes verified source edits from claims still needing evi
 - Retained MPI-SP contractual 31 Jul 2026 end date as confirmed by the author.
 - Used `Preprint` plus linked arXiv ID, avoiding the redundant phrase `arXiv preprint` under the Preprints heading.
 - Removed the `In English` presentations subheading; retained `In Korean` for non-English conference presentations.
-- Added the verified DOI 10.16879/jkca.2024.24.2.089 for the landslide article; kept visible DOI for the Social Science & Medicine article. The 2023 population paper's publisher page does **not** display a DOI; it is linked by stable publisher URL without guessing.
+- Added the verified DOI 10.16879/jkca.2024.24.2.089 for the landslide article; kept visible DOI for the Social Science & Medicine article. The 2023 population paper's DOI was subsequently verified as 10.16879/jkca.2023.23.1.021. Both Korean Cartographic Association papers now have linked DOI identifiers **and** separate `Free full text` links to their publisher-hosted article pages (which provide PDF links).
 - Retained Republic of Korea Army military experience in `Work Experience`, not `Service`, because the latter denotes academic/professional service in US CVs.
 - Added Nix (flakes) to Reproducibility & Publishing.
 
