@@ -13,7 +13,7 @@ This checklist distinguishes verified source edits from claims still needing evi
 - Simplified and updated institutional header while retaining established email, ORCID, Scholar, website, GitHub links.
 
 ## Check before final merge
-- **MPI-SP tenure**: Current CV says 1 May 2025–31 Jul 2026. Prior context suggests departure on 13 Jul 2026; confirm contractual last day, not departure date.
+- **MPI-SP tenure (resolved)**: Contract end confirmed by the author as 31 Jul 2026. Retained that date irrespective of physical departure.
 - **UB Clean Air consultancy**: CV says Sep 2024–Present. Confirm still ongoing, or insert end month.
 - **WASH manuscript journal status**: arXiv update verified March 2026; preprint label is conservative. Confirm formal journal acceptance/publication/review status before changing label.
 - **Author name spelling**: Published articles use Suh, Y.; confirm whether document display name should be “Yong-Hun Suh” vs “Yonghun Suh.”
@@ -24,6 +24,18 @@ This checklist distinguishes verified source edits from claims still needing evi
 - **Research specifics**: The GraphCast workflow has concrete evidence; omit claims that future experiments, papers, or methods are complete.
 - **Current conference publication claims**: Check oral vs poster vs coauthor-only presentation status before updating descriptions.
 - **PDF**: The branch edits only the LaTeX source. CI currently builds only on pushes to main. Compile and visually inspect before merging; the PDF stored on main still reflects the previous CV.
+
+## Author feedback incorporated (26 October 2026)
+- Added official UGA Geography mailing address at 210 Field St., Room 204, Athens, GA 30602. This is the **department** address; it is not claimed to be an individual mailbox.
+- Retained clickable, visibly underlined links and supplied identifiable link text or printable identifiers for email, ORCID, Google Scholar, academic website, and GitHub.
+- Used `Ph.D. Student in Geography` in Education with Aug 2026–Present rather than implying candidacy or supplying an unconfirmed completion year.
+- Linked to the verified `YONGHUNI/s2s-ar-forecasting` repository from the GraphCast/HPC research bullet.
+- Retained MPI-SP contractual 31 Jul 2026 end date as confirmed by the author.
+- Used `Preprint` plus linked arXiv ID, avoiding the redundant phrase `arXiv preprint` under the Preprints heading.
+- Removed the `In English` presentations subheading; retained `In Korean` for non-English conference presentations.
+- Added the verified DOI 10.16879/jkca.2024.24.2.089 for the landslide article; kept visible DOI for the Social Science & Medicine article. The 2023 population paper's publisher page does **not** display a DOI; it is linked by stable publisher URL without guessing.
+- Retained Republic of Korea Army military experience in `Work Experience`, not `Service`, because the latter denotes academic/professional service in US CVs.
+- Added Nix (flakes) to Reproducibility & Publishing.
 
 ## Later layout iteration
 Consider a more conventional academic-CV typographic design: 10.5–11 pt readable font, consistent date alignment, moderate whitespace, section headings that do not require a 1.2-inch left gutter, no photo, linked DOI/preprints, running page numbers, and a short header. Preserve complete academic activity; do not force a one-page résumé.
